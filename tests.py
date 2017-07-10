@@ -19,5 +19,13 @@ class NommerTestCase(unittest.TestCase):
         expected_list = [0, 1]
         self.assertEqual(expected_list, get_list_index(words))
 
+    def test_list_of_index_with_3_words(self):
+        """
+        Test get_list_index return a list of index from given list of 3 words
+        """
+        words = ('hello', 'world', 'how')
+        expected_list = [0, 1, 2]
+        self.assertEqual(expected_list, get_list_index(words))
+
 if __name__ == '__main__':
     unittest.main()

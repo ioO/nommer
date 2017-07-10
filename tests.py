@@ -171,7 +171,7 @@ class NommerTestCase(unittest.TestCase):
                     index_range, len(list_index))
                 )
 
-    def test_create_possible_index(self):
+    def test_create_possible_indexs_string_with_2_words(self):
         """
         Test the cleaning of list of all string of integer from range to only
         a list of string of integer possible index
@@ -180,6 +180,20 @@ class NommerTestCase(unittest.TestCase):
         index_range = find_index_range(list_index)
         all_index = create_list_integer_range(index_range, len(list_index))
         expected_output = ['01', '10']
+        self.assertEqual(
+                expected_output, create_possible_index_string(
+                    list_index, all_index)
+                )
+
+    def test_create_possible_index_with_3_words(self):
+        """
+        Test the cleaning of list of all string of integer from range to only
+        a list of string of integer possible index
+        """
+        list_index = get_list_index(self.three_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        expected_output = ['012', '021', '102', '120', '201', '210']
         self.assertEqual(
                 expected_output, create_possible_index_string(
                     list_index, all_index)

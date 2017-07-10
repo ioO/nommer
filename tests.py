@@ -61,6 +61,22 @@ def create_list_integer_range(end, fill):
     return integer_list
 
 def create_possible_index_string(list_index, all):
+    """
+    Create a list of string that represent a sequence of index
+
+    Parameters
+    ----------
+    list_index : list
+        List of index number we want
+    all : list
+        List of integer from a range
+
+    Returns
+    -------
+    list
+        A list of string that represent a sequence of integer which contains
+        all index in list_index
+    """
     result = []
     for possible_index in all:
         tmp_result = []
@@ -68,6 +84,26 @@ def create_possible_index_string(list_index, all):
             tmp_result.append(str(i) in possible_index)
         if False not in tmp_result:
             result.append(possible_index)
+    return result
+
+def create_possible_index(seq):
+    """
+    Create a list of index for all possible combination
+
+    Parameters
+    ----------
+    seq : list
+        List of all index in string
+
+    Returns
+    -------
+    list
+        Each item of contain a list of index
+    """
+    result = []
+    for i in seq:
+        result.append(list(int(i) for i in list(i)))
+
     return result
 
 class NommerTestCase(unittest.TestCase):
@@ -212,6 +248,46 @@ class NommerTestCase(unittest.TestCase):
         result = create_possible_index_string(list_index, all_index)
         for i in expected_output:
             self.assertIn(i, result)
+
+    def test_create_index_with_possible_for_two_words(self):
+        """
+        Test creation of list of index from list of integer
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index = create_possible_index_string(list_index, all_index)
+        expected_output = [[0, 1], [1, 0]]
+        self.assertEqual(
+                expected_output, create_possible_index(possible_index))
+
+    def test_create_index_with_possible_for_3_words(self):
+        """
+        Test creation of list of index from list of integer
+        """
+        list_index = get_list_index(self.three_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index = create_possible_index_string(list_index, all_index)
+        expected_output = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0],
+                [2, 0, 1], [2, 1, 0]]
+        self.assertEqual(
+                expected_output, create_possible_index(possible_index))
+
+    def test_create_index_with_possible_for_5_words(self):
+        """
+        Test creation of list of index from list of integer
+        """
+        list_index = get_list_index(self.five_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index = create_possible_index_string(list_index, all_index)
+        expected_output = [[0, 1, 2, 3, 4], [0, 2, 1, 3, 4], [4, 3, 2, 1, 0],
+                [3, 2, 4, 0, 1], [2, 0, 4, 1, 3]]
+        result = create_possible_index(possible_index)
+        for i in expected_output:
+            self.assertIn(i, result)
+
 
 if __name__ == '__main__':
     unittest.main()

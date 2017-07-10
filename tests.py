@@ -7,6 +7,10 @@ def get_list_index(seq):
         list_index.append(i)
     return list_index
 
+def find_index_range(seq):
+    seq.reverse()
+    return int(''.join(str(el) for el in seq))
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -49,6 +53,14 @@ class NommerTestCase(unittest.TestCase):
         new_list = words[0:rnum]
         expected_list = list(range(rnum))
         self.assertEqual(expected_list, get_list_index(new_list))
+
+    def test_find_index_range_with_2_words(self):
+        """
+        Test find index range return an integer value
+        """
+        words = ('hello', 'world')
+        list_index = get_list_index(words)
+        self.assertEqual(find_index_range(list_index), 10)
 
 if __name__ == '__main__':
     unittest.main()

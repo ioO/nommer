@@ -70,6 +70,26 @@ def create_possible_index_string(list_index, all):
             result.append(possible_index)
     return result
 
+def create_possible_index(seq):
+    """
+    Create a list of index for all possible combination
+
+    Parameters
+    ----------
+    seq : list
+        List of all index in string
+
+    Returns
+    -------
+    list
+        Each item of contain a list of index
+    """
+    result = []
+    for i in seq:
+        result.append(list(int(i) for i in list(i)))
+
+    return result
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -212,6 +232,18 @@ class NommerTestCase(unittest.TestCase):
         result = create_possible_index_string(list_index, all_index)
         for i in expected_output:
             self.assertIn(i, result)
+
+    def test_create_index_with_possible_for_two_words(self):
+        """
+        Test creation of list of index from list of integer
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index = create_possible_index_string(list_index, all_index)
+        expected_output = [[0, 1], [1, 0]]
+        self.assertEqual(
+                expected_output, create_possible_index(possible_index))
 
 if __name__ == '__main__':
     unittest.main()

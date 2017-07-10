@@ -36,6 +36,30 @@ def find_index_range(seq):
     seq.reverse()
     return int(''.join(str(el) for el in seq))
 
+def create_list_integer_range(end, fill):
+    """
+    Return a list of string of number
+    Create a list of all integer possible between 0 to the max integer returned
+    by find_index_range() and convert each value to string
+
+    Parameters
+    ----------
+    end : integer
+        The max index number to create the list based on range
+    fill : integer
+        A len to fill the number with leading 0
+
+    Returns
+    -------
+    list
+        A list of all integer from 0 to range(end+1)
+    """
+    integer_list = []
+    #add end+1 to get end in list
+    for i in range(end+1):
+        integer_list.append(str(i).zfill(fill))
+    return integer_list
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -100,6 +124,42 @@ class NommerTestCase(unittest.TestCase):
         """
         list_index = get_list_index(self.five_words)
         self.assertEqual(find_index_range(list_index), 43210)
+
+    def test_create_list_of_integer_range_with_2_words(self):
+        """
+        Test create a list of integer from index range
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        expected_output = list(str(i).zfill(2) for i in range(10+1))
+        self.assertEqual(
+                expected_output, create_list_integer_range(
+                    index_range, len(list_index))
+                )
+
+    def test_create_list_of_integer_range_with_3_words(self):
+        """
+        Test create a list of integer from index range
+        """
+        list_index = get_list_index(self.three_words)
+        index_range = find_index_range(list_index)
+        expected_output = list(str(i).zfill(3) for i in range(210+1))
+        self.assertEqual(
+                expected_output, create_list_integer_range(
+                    index_range, len(list_index))
+                )
+
+    def test_create_list_of_integer_range_with_5_words(self):
+        """
+        Test create a list of integer from index range
+        """
+        list_index = get_list_index(self.five_words)
+        index_range = find_index_range(list_index)
+        expected_output = list(str(i).zfill(5) for i in range(43210+1))
+        self.assertEqual(
+                expected_output, create_list_integer_range(
+                    index_range, len(list_index))
+                )
 
 if __name__ == '__main__':
     unittest.main()

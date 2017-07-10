@@ -36,6 +36,12 @@ def find_index_range(seq):
     seq.reverse()
     return int(''.join(str(el) for el in seq))
 
+def create_list_integer_range(end):
+    integer_list = []
+    for i in range(end+1):
+        integer_list.append(i)
+    return integer_list
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -100,6 +106,16 @@ class NommerTestCase(unittest.TestCase):
         """
         list_index = get_list_index(self.five_words)
         self.assertEqual(find_index_range(list_index), 43210)
+
+    def test_create_list_of_integer_range_with_2_words(self):
+        """
+        Test create a list of integer from index range
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        expected_output = list(range(10+1))
+        self.assertEqual(
+                expected_output, create_list_integer_range(index_range))
 
 if __name__ == '__main__':
     unittest.main()

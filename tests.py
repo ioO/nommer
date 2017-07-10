@@ -106,6 +106,30 @@ def create_possible_index(seq):
 
     return result
 
+def create_combination(word_list, index_list):
+    """
+    Create a list of combination of words based on index list
+
+    Parameters
+    ----------
+    word_list : list
+        The original list of words
+    index_list : list
+        The list of all possible combination of index
+
+    Returns
+    -------
+    list
+        A list with all possible combination of words
+    """
+    result = []
+    for list_index in index_list:
+        subresult = []
+        for index in list_index:
+            subresult.append(word_list[index])
+        result.append(subresult)
+    return result
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -288,6 +312,19 @@ class NommerTestCase(unittest.TestCase):
         for i in expected_output:
             self.assertIn(i, result)
 
+    def test_create_combination_of_2_words(self):
+        """
+        Test create combination from index list with origin list of words
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index_string = create_possible_index_string(
+                list_index, all_index)
+        index_combination = create_possible_index(possible_index_string)
+        expected_output = [['hello', 'world'], ['world', 'hello']]
+        self.assertEqual(expected_output,
+                create_combination(self.two_words, index_combination))
 
 if __name__ == '__main__':
     unittest.main()

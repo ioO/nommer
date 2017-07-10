@@ -60,6 +60,16 @@ def create_list_integer_range(end, fill):
         integer_list.append(str(i).zfill(fill))
     return integer_list
 
+def create_possible_index_string(list_index, all):
+    result = []
+    for possible_index in all:
+        tmp_result = []
+        for i in list_index:
+            tmp_result.append(str(i) in possible_index)
+        if False not in tmp_result:
+            result.append(possible_index)
+    return result
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -160,6 +170,48 @@ class NommerTestCase(unittest.TestCase):
                 expected_output, create_list_integer_range(
                     index_range, len(list_index))
                 )
+
+    def test_create_possible_indexs_string_with_2_words(self):
+        """
+        Test the cleaning of list of all string of integer from range to only
+        a list of string of integer possible index
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        expected_output = ['01', '10']
+        self.assertEqual(
+                expected_output, create_possible_index_string(
+                    list_index, all_index)
+                )
+
+    def test_create_possible_index_with_3_words(self):
+        """
+        Test the cleaning of list of all string of integer from range to only
+        a list of string of integer possible index
+        """
+        list_index = get_list_index(self.three_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        expected_output = ['012', '021', '102', '120', '201', '210']
+        self.assertEqual(
+                expected_output, create_possible_index_string(
+                    list_index, all_index)
+                )
+
+    def test_create_possible_index_with_5_words(self):
+        """
+        Test the cleaning of list of all string of integer from range to only
+        a list of string of integer possible index.
+        Use list contains
+        """
+        list_index = get_list_index(self.five_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        expected_output = ['01234', '02134', '43210', '32401', '20413']
+        result = create_possible_index_string(list_index, all_index)
+        for i in expected_output:
+            self.assertIn(i, result)
 
 if __name__ == '__main__':
     unittest.main()

@@ -326,5 +326,24 @@ class NommerTestCase(unittest.TestCase):
         self.assertEqual(expected_output,
                 create_combination(self.two_words, index_combination))
 
+    def test_create_combination_of_3_words(self):
+        """
+        Test create combination from index list with origin list of words
+        """
+        list_index = get_list_index(self.three_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index_string = create_possible_index_string(
+                list_index, all_index)
+        index_combination = create_possible_index(possible_index_string)
+        expected_output = [
+                ['hello', 'world', 'how'], ['hello', 'how', 'world'],
+                ['world', 'hello', 'how'], ['world', 'how', 'hello'],
+                ['how', 'hello', 'world'], ['how', 'world', 'hello']
+                ]
+        self.assertEqual(expected_output,
+                create_combination(self.three_words, index_combination))
+
+
 if __name__ == '__main__':
     unittest.main()

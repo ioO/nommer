@@ -199,5 +199,19 @@ class NommerTestCase(unittest.TestCase):
                     list_index, all_index)
                 )
 
+    def test_create_possible_index_with_5_words(self):
+        """
+        Test the cleaning of list of all string of integer from range to only
+        a list of string of integer possible index.
+        Use list contains
+        """
+        list_index = get_list_index(self.five_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        expected_output = ['01234', '02134', '43210', '32401', '20413']
+        result = create_possible_index_string(list_index, all_index)
+        for i in expected_output:
+            self.assertIn(i, result)
+
 if __name__ == '__main__':
     unittest.main()

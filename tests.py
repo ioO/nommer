@@ -62,5 +62,13 @@ class NommerTestCase(unittest.TestCase):
         list_index = get_list_index(self.two_words)
         self.assertEqual(find_index_range(list_index), 10)
 
+    def test_find_index_range_with_3_words(self):
+        """
+        Test find index range return an integer value
+        """
+        list_index = get_list_index(self.three_words)
+        self.assertEqual(find_index_range(list_index), 210)
+
+
 if __name__ == '__main__':
     unittest.main()

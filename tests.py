@@ -258,5 +258,20 @@ class NommerTestCase(unittest.TestCase):
         self.assertEqual(
                 expected_output, create_possible_index(possible_index))
 
+    def test_create_index_with_possible_for_5_words(self):
+        """
+        Test creation of list of index from list of integer
+        """
+        list_index = get_list_index(self.five_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index = create_possible_index_string(list_index, all_index)
+        expected_output = [[0, 1, 2, 3, 4], [0, 2, 1, 3, 4], [4, 3, 2, 1, 0],
+                [3, 2, 4, 0, 1], [2, 0, 4, 1, 3]]
+        result = create_possible_index(possible_index)
+        for i in expected_output:
+            self.assertIn(i, result)
+
+
 if __name__ == '__main__':
     unittest.main()

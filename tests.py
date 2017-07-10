@@ -117,5 +117,16 @@ class NommerTestCase(unittest.TestCase):
         self.assertEqual(
                 expected_output, create_list_integer_range(index_range))
 
+    def test_create_list_of_integer_range_with_3_words(self):
+        """
+        Test create a list of integer from index range
+        """
+        list_index = get_list_index(self.three_words)
+        index_range = find_index_range(list_index)
+        expected_output = list(range(210+1))
+        self.assertEqual(
+                expected_output, create_list_integer_range(index_range))
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -61,6 +61,22 @@ def create_list_integer_range(end, fill):
     return integer_list
 
 def create_possible_index_string(list_index, all):
+    """
+    Create a list of string that represent a sequence of index
+
+    Parameters
+    ----------
+    list_index : list
+        List of index number we want
+    all : list
+        List of integer from a range
+
+    Returns
+    -------
+    list
+        A list of string that represent a sequence of integer which contains
+        all index in list_index
+    """
     result = []
     for possible_index in all:
         tmp_result = []

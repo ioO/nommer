@@ -2,12 +2,37 @@ import unittest
 import random
 
 def get_list_index(seq):
+    """
+    Return a list of index corresponding to the number of index in seq
+
+    Parameters
+    ----------
+    seq : list
+        A list of words
+
+    Returns
+    -------
+    List
+        A list of integer that represent index of seq
+    """
     list_index = []
     for i in range(len(seq)):
         list_index.append(i)
     return list_index
 
 def find_index_range(seq):
+    """
+    Return an integer representing the max integer of index list
+
+    Parameters
+    ----------
+    seq : list
+        A list of words
+
+    Returns
+    -------
+    int
+    """
     seq.reverse()
     return int(''.join(str(el) for el in seq))
 

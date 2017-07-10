@@ -1,4 +1,5 @@
 import unittest
+import random
 
 def get_list_index(seq):
     list_index = []
@@ -34,6 +35,20 @@ class NommerTestCase(unittest.TestCase):
         words = ('hello', 'world', 'how', 'are', 'you')
         expected_list = [0, 1, 2, 3, 4]
         self.assertEqual(expected_list, get_list_index(words))
+
+    def test_list_of_index_with_n_words(self):
+        """
+        Test get_list_index return a list of index from given list of n words
+        Use a random function for each test
+        """
+        #split each letter
+        words = ('helloworldhowareyou')
+        #random number for list
+        rnum = random.randint(0,len(words))
+        #split the list
+        new_list = words[0:rnum]
+        expected_list = list(range(rnum))
+        self.assertEqual(expected_list, get_list_index(new_list))
 
 if __name__ == '__main__':
     unittest.main()

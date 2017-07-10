@@ -37,7 +37,23 @@ def find_index_range(seq):
     return int(''.join(str(el) for el in seq))
 
 def create_list_integer_range(end):
+    """
+    Return a list of integer
+    Create a list of all integer possible between 0 to the max integer returned
+    by find_index_range()
+
+    Parameters
+    ----------
+    end : integer
+        The max index number to create the list based on range
+
+    Returns
+    -------
+    list
+        A list of all integer from 0 to range(end+1)
+    """
     integer_list = []
+    #add end+1 to get end in list
     for i in range(end+1):
         integer_list.append(i)
     return integer_list

@@ -155,4 +155,33 @@ def create_name(combination):
                 name += ''
         yield name
 
+def get_combination_of_index(length):
+    """
+    Create a combination of index
 
+    Parameters
+    ----------
+    length - int
+        Size of the list of words
+
+    Returns
+    -------
+    generator
+        A generator of possible combination of index
+    """
+    # list of index
+    indexes = list(range(length))
+    # define max index
+    indexes.reverse()
+    max_index = int(''.join(str(i) for i in indexes))+1
+    indexes.reverse()
+    i = 0
+    # generate str of index to max_index
+    while i < max_index:
+        item = list(str(i).zfill(length))
+        tmp_result = []
+        for index in indexes:
+            tmp_result.append(str(index) in item)
+        if not False in tmp_result:
+                yield item
+        i += 1

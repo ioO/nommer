@@ -198,7 +198,7 @@ def get_combination_of_names(words):
     Returns
     -------
     generator
-        A generator for all possible combination of words in list
+        A generator for all possible names
     """
     for indexes in get_combination_of_index(len(words)):
         tmp_result = []

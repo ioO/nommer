@@ -296,7 +296,13 @@ class NommerTestCase(unittest.TestCase):
         for word in expected_output:
             self.assertIn(word, create_name(combination))
 
-
+    def test_get_combination_of_index_with_2_words(self):
+        """
+        Test generator that create combination of possible index
+        """
+        self.assertEqual(2, len(list(get_combination_of_index(2))))
+        expected_output = [['0', '1'], ['1', '0']]
+        self.assertEqual(expected_output, list(get_combination_of_index(2)))
 
 if __name__ == '__main__':
     unittest.main()

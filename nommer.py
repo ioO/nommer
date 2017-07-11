@@ -186,9 +186,9 @@ def get_combination_of_index(length):
                 yield item
         i += 1
 
-def get_combination_of_words(words):
+def get_combination_of_names(words):
     """
-    Create a combination of words based on possible index
+    Create a combination of name based on possible index and word list
 
     Parameters
     ----------
@@ -202,6 +202,12 @@ def get_combination_of_words(words):
     """
     for indexes in get_combination_of_index(len(words)):
         tmp_result = []
+        i = 0
+        name = ''
         for index in indexes:
-            tmp_result.append(words[int(index)])
-        yield tmp_result
+            try:
+                name += words[int(index)][i]
+                i += 1
+            except IndexError:
+                name += ''
+        yield name

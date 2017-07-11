@@ -130,6 +130,33 @@ def create_combination(word_list, index_list):
         result.append(subresult)
     return result
 
+def create_name(combination):
+    """
+    Create list of name from combination list
+    Each name follows this pattern n letter of n word for n letter for
+    the name. First letter of the first word for the first letter of the name,
+    second letter of the second word for second letter of the name, and so on.
+
+    Parameters
+    ----------
+    combination : list
+        List of all combination of words
+
+    Returns
+    -------
+    list
+        A list of name
+    """
+    result = []
+    for el in combination:
+        i = 0
+        name = ''
+        for word in el:
+            name += word[i]
+            i += 1
+        result.append(name)
+    return result
+
 class NommerTestCase(unittest.TestCase):
     """
     TestCase for Nommer
@@ -365,7 +392,19 @@ class NommerTestCase(unittest.TestCase):
         for i in expected_output:
             self.assertIn(i, result)
 
-
+    def test_create_name_with_2_words(self):
+        """
+        Test creation of name from a list
+        """
+        list_index = get_list_index(self.two_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index_string = create_possible_index_string(
+            list_index, all_index)
+        index_combination = create_possible_index(possible_index_string)
+        combination = create_combination(self.two_words, index_combination)
+        expected_output = ['ho', 'we']
+        self.assertEqual(expected_output, create_name(combination))
 
 if __name__ == '__main__':
     unittest.main()

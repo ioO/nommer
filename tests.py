@@ -362,5 +362,21 @@ class NommerTestCase(unittest.TestCase):
             expected_output, list(get_combination_of_names(self.two_words))
             )
 
+    def test_combination_of_names_with_3_words(self):
+        """
+        Test generator that create all combination of names
+        """
+        self.assertEqual(
+                6, len(list(get_combination_of_names(self.three_words)))
+                )
+        expected_output = [
+                'how', 'hor',
+                'wew', 'wol',
+                'her', 'hol'
+                ]
+        self.assertEqual(
+            expected_output, list(get_combination_of_names(self.three_words))
+            )
+
 if __name__ == '__main__':
     unittest.main()

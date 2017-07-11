@@ -350,5 +350,17 @@ class NommerTestCase(unittest.TestCase):
         for el in expected_output:
             self.assertIn(el, list(get_combination_of_index(5)))
 
+    def test_combination_of_words_with_2_words(self):
+        """
+        Test generator that create all combination of words
+        """
+        self.assertEqual(
+                2, len(list(get_combination_of_words(self.two_words)))
+                )
+        expected_output = [['hello', 'world'], ['world', 'hello']]
+        self.assertEqual(
+            expected_output, list(get_combination_of_words(self.two_words))
+            )
+
 if __name__ == '__main__':
     unittest.main()

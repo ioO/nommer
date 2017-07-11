@@ -144,7 +144,6 @@ def create_name(combination):
     list
         A list of name
     """
-    result = []
     for el in combination:
         i = 0
         name = ''
@@ -154,7 +153,6 @@ def create_name(combination):
                 i += 1
             except IndexError:
                 name += ''
-        result.append(name)
-    return result
+        yield name
 
 

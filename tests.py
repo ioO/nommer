@@ -249,7 +249,10 @@ class NommerTestCase(unittest.TestCase):
         index_combination = create_possible_index(possible_index_string)
         combination = create_combination(self.two_words, index_combination)
         expected_output = ['ho', 'we']
-        self.assertEqual(expected_output, create_name(combination))
+        # generator should return only 2 elements
+        self.assertEqual(2, len(list(create_name(combination))))
+        for name in create_name(combination):
+            self.assertIn(name, expected_output)
 
     def test_create_name_with_3_words(self):
         """
@@ -267,7 +270,10 @@ class NommerTestCase(unittest.TestCase):
                 'wew', 'wol',
                 'her', 'hol'
                 ]
-        self.assertEqual(expected_output, create_name(combination))
+        # generator should return only 6 elements
+        self.assertEqual(6, len(list(create_name(combination))))
+        for name in create_name(combination):
+            self.assertIn(name, expected_output)
 
     def test_create_name_with_5_words(self):
         """

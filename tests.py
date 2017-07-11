@@ -424,6 +424,28 @@ class NommerTestCase(unittest.TestCase):
                 ]
         self.assertEqual(expected_output, create_name(combination))
 
+    def test_create_name_with_5_words(self):
+        """
+        Test creation of name from a list
+        """
+        list_index = get_list_index(self.five_words)
+        index_range = find_index_range(list_index)
+        all_index = create_list_integer_range(index_range, len(list_index))
+        possible_index_string = create_possible_index_string(
+            list_index, all_index)
+        index_combination = create_possible_index(possible_index_string)
+        combination = create_combination(self.five_words, index_combination)
+        expected_output = [
+                'how',
+                'hor',
+                'yrwlo',
+                'aould',
+                'heul',
+                ]
+        for word in expected_output:
+            self.assertIn(word, create_name(combination))
+
+
 
 if __name__ == '__main__':
     unittest.main()

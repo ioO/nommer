@@ -17,8 +17,7 @@ def process(words):
     index_string = create_possible_index_string(list_index, list_integer)
     possible_index = create_possible_index(index_string)
     combinations = create_combination(word_list, possible_index)
-    names = create_name(combinations)
-    return names
+    return create_name(combinations)
 
 def display(names):
     for name in names:

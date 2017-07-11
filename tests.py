@@ -357,7 +357,7 @@ class NommerTestCase(unittest.TestCase):
         self.assertEqual(
                 2, len(list(get_combination_of_words(self.two_words)))
                 )
-        expected_output = [['hello', 'world'], ['world', 'hello']]
+        expected_output = ['hw', 'we']
         self.assertEqual(
             expected_output, list(get_combination_of_words(self.two_words))
             )

@@ -270,7 +270,10 @@ class NommerTestCase(unittest.TestCase):
                 'wew', 'wol',
                 'her', 'hol'
                 ]
-        self.assertEqual(expected_output, create_name(combination))
+        # generator should return only 6 elements
+        self.assertEqual(6, len(list(create_name(combination))))
+        for name in create_name(combination):
+            self.assertIn(name, expected_output)
 
     def test_create_name_with_5_words(self):
         """

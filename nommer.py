@@ -185,3 +185,23 @@ def get_combination_of_index(length):
         if not False in tmp_result:
                 yield item
         i += 1
+
+def get_combination_of_words(words):
+    """
+    Create a combination of words based on possible index
+
+    Parameters
+    ----------
+    words : list
+        List of words
+
+    Returns
+    -------
+    generator
+        A generator for all possible combination of words in list
+    """
+    for indexes in get_combination_of_index(len(words)):
+        tmp_result = []
+        for index in indexes:
+            tmp_result.append(words[int(index)])
+        yield tmp_result

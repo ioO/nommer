@@ -304,5 +304,17 @@ class NommerTestCase(unittest.TestCase):
         expected_output = [['0', '1'], ['1', '0']]
         self.assertEqual(expected_output, list(get_combination_of_index(2)))
 
+    def test_get_combination_of_index_with_3_words(self):
+        """
+        Test generator that create combination of possible index
+        """
+        self.assertEqual(6, len(list(get_combination_of_index(3))))
+        expected_output = [
+                ['0', '1', '2'], ['0', '2', '1'],
+                ['1', '0', '2'], ['1', '2', '0'],
+                ['2', '0', '1'], ['2', '1', '0']
+                ]
+        self.assertEqual(expected_output, list(get_combination_of_index(3)))
+
 if __name__ == '__main__':
     unittest.main()

@@ -152,8 +152,11 @@ def create_name(combination):
         i = 0
         name = ''
         for word in el:
-            name += word[i]
-            i += 1
+            try:
+                name += word[i]
+                i += 1
+            except IndexError:
+                name += ''
         result.append(name)
     return result
 
